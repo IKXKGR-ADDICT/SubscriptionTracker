@@ -3,19 +3,14 @@ from rich.table import Table
 from rich import box
 from rich.columns import Columns
 
-something = {"hello": 98, "life": 67, "nitrogen": 241}
+class Example:
+    def __init__(self, value):
+        self.value = value
 
-table = Table(
-    box=box.SIMPLE_HEAD
-)
+something = {
+    "first": Example(3),
+    "second": Example(0),
+    "third": Example(5)
+}
 
-table.add_column("Name")
-table.add_column("Value")
-
-for key in something:
-    table.add_row(key, f"{something[key]}")
-
-console = Console()
-string = "\nLet's\ndo\nthis"
-
-console.print(Columns([table, string]))
+print(something[max(something, key=lambda key: something[key].value)])
